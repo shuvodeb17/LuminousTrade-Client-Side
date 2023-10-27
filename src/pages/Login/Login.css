@@ -1,0 +1,6 @@
+.login{
+    background-image: url('../../../src/assets/Login/login.jpg');
+    background-size: contain;
+    background-position: center;
+    padding: 120px 0px 120px 0px;
+}
