@@ -4,7 +4,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 const LoginForm = () => {
     return (
         <div className="flex items-center justify-center mt-5">
-            <form className='w-4/12'>
+            <form className='md:w-4/12 md:px-0 w-full px-5'>
                 <h2 className="text-2xl font-semibold">Login to your account</h2>
                 <div>
                     <div className="mt-5">
