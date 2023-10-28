@@ -1,27 +1,51 @@
 import { Link } from "react-router-dom";
 import { AiOutlineEye } from 'react-icons/ai';
+import { useForm } from "react-hook-form"
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 const RegisterForm = () => {
+
+    const { signUp } = useContext(AuthContext)
+
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm()
+    const onSubmit = (data) => {
+        signUp(data.email, data.password)
+            .then(newUser => {
+                const user = newUser.user;
+                console.log(user)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
+
     return (
         <div className="flex items-center justify-center mt-5">
-            <form className='md:w-4/12 md:px-0 w-full px-5'>
+            <form onSubmit={handleSubmit(onSubmit)} className='md:w-4/12 md:px-0 w-full px-5'>
                 <h2 className="text-2xl font-semibold">Don't have an account ? Register now.</h2>
                 <div>
                     <div className="mt-5">
                         <p className='text-[#606060]'>Name</p>
-                        <input type="text" className="border rounded w-full py-2 px-2 outline-none" />
+                        <input {...register("name", { required: true })} type="text" className="border rounded w-full py-2 px-2 outline-none" />
                     </div>
                     <div className="mt-5">
                         <p className='text-[#606060]'>Email</p>
-                        <input type="email" className="border rounded w-full py-2 px-2 outline-none" />
+                        <input {...register("email", { required: true })} type="email" className="border rounded w-full py-2 px-2 outline-none" />
                     </div>
                     <div className="mt-5">
                         <p className='text-[#606060]'>Phone Number</p>
-                        <input type="email" className="border rounded w-full py-2 px-2 outline-none" />
+                        <input {...register("phoneNumber", { required: true })} type="number" className="border rounded w-full py-2 px-2 outline-none" />
                     </div>
                     <div className="mt-5 mb-5 relative">
                         <p className='text-[#606060]'>Password</p>
-                        <input type="password" className="border rounded w-full py-2 px-2 outline-none" />
+                        <input {...register("password", { required: true })} type="password" className="border rounded w-full py-2 px-2 outline-none" />
                         <AiOutlineEye className='cursor-pointer absolute right-2 top-9' size={20} />
                     </div>
 

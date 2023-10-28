@@ -62,12 +62,12 @@ const Products = () => {
 
     return (
         <div className="py-10">
-            <div className="container mx-auto px-10">
+            <div className="container mx-auto md:px-10 px-5">
                 <h1 className="text-3xl text-center font-bold">
-                    Explore our Products
+                    Explore our <span className="text-[#9264E2]">Products</span>
                 </h1>
 
-                <div className="grid grid-cols-4 gap-5 mt-10">
+                <div className="grid md:grid-cols-4 gap-5 mt-10">
                     {
                         products?.map(product => <ProductsCards
                             key={product?.id}
