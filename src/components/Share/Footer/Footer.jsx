@@ -26,7 +26,7 @@ const Footer = () => {
                             <rect x="14" y="11" width="7" height="12" />
                         </svg>
                         <span className="ml-2 text-[#8364E2] text-xl font-bold tracking-wide uppercase">
-                            LuminousTrade
+                            Luminous Trade
                         </span>
                     </a>
                     <div className="mt-6 lg:max-w-sm">
@@ -119,7 +119,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
                 <p className="text-sm text-gray-600">
-                    © Copyright 2023 <span className="text-[#8364E2]">LuminousTrade</span> . All rights reserved.
+                    © Copyright 2023 <span className="text-[#8364E2]">Luminous Trade</span> . All rights reserved.
                 </p>
                 <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
                     <li>

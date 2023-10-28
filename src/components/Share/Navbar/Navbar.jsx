@@ -1,15 +1,16 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [navbar, setNavbar] = useState(false);
 
     return (
-        <nav className="w-full bg-white shadow">
+        <nav className="w-full bg-white shadow fixed z-10">
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <a href="javascript:void(0)">
-                            <h2 className="text-2xl font-bold">LOGO</h2>
+                            <h2 className="text-2xl font-bold">Luminous Trade</h2>
                         </a>
                         <div className="md:hidden">
                             <button
@@ -56,16 +57,16 @@ const Navbar = () => {
                     >
                         <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                             <li className="text-gray-600 hover:text-blue-600">
-                                <a href="javascript:void(0)">Home</a>
+                                <Link to="/">Home</Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                <a href="javascript:void(0)">Blog</a>
+                                <Link to="/">About</Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                <a href="javascript:void(0)">About US</a>
+                                <Link to="/">Services</Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                <a href="javascript:void(0)">Contact US</a>
+                                <Link to="/register">Register</Link>
                             </li>
                         </ul>
                     </div>

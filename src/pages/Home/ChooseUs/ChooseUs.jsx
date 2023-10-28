@@ -31,10 +31,10 @@ const ChooseUs = () => {
 
     return (
         <div className="py-20">
-            <div className="container px-10 mx-auto">
+            <div className="container md:px-10 px-5 mx-auto">
                 <h1 className="text-3xl font-bold text-center">Why People Choose Us</h1>
 
-                <div className="grid grid-cols-5 gap-5 mt-10">
+                <div className="grid md:grid-cols-5 grid-cols-2 gap-5 mt-10">
                     {
                         services.map(service => <ChooseUsCard
                             key={service.title}
