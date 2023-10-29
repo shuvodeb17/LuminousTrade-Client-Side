@@ -1,24 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye } from 'react-icons/ai';
 import { useForm } from "react-hook-form"
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { baseUrl } from "../../URL/URL";
 
 const LoginForm = () => {
 
+    const { register, formState: { errors }, handleSubmit } = useForm()
     const { signIn } = useContext(AuthContext)
+    const navigate = useNavigate();
 
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-    } = useForm()
     const onSubmit = (data) => {
         console.log(data)
         signIn(data.email, data.password)
             .then(loggedUser => {
                 const result = loggedUser.user
-                console.log(result)
+                const currentUser = {
+                    email: result?.email
+                }
+                console.log(currentUser)
+
+                fetch(`${baseUrl}/jwt-check`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(result => {
+                        console.log('jwt check', result)
+                        localStorage.setItem('access-token', result.token);
+                    })
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.message)

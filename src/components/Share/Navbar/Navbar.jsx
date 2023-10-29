@@ -4,9 +4,15 @@ import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
     const [navbar, setNavbar] = useState(false);
+    const { user, logout } = useContext(AuthContext)
+
+    const handleLogout = () => {
+        logout();
+        localStorage.removeItem('access-token');
+    }
 
     return (
-        <nav className="w-full bg-white shadow fixed z-10">
+        <nav className="w-full bg-white shadow">
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -61,14 +67,21 @@ const Navbar = () => {
                                 <Link to="/">Home</Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                <Link to="/">About</Link>
+                                <Link to="/add-product">Add Product</Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
                                 <Link to="/">Services</Link>
                             </li>
-                            <li className="text-gray-600 hover:text-blue-600">
-                                <Link to="/register">Register</Link>
-                            </li>
+                            {
+                                user?.email ?
+                                    <li onClick={handleLogout} className="text-[#fff] bg-[#b01818] px-5 py-1 rounded cursor-pointer">
+                                        <button>Logout</button>
+                                    </li>
+                                    :
+                                    <li className="text-gray-600 hover:text-blue-600">
+                                        <Link to="/register">Register</Link>
+                                    </li>
+                            }
                         </ul>
                     </div>
                 </div>

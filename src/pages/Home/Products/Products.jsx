@@ -1,64 +1,19 @@
+import { useEffect, useState } from "react";
+import { baseUrl } from "../../../URL/URL";
 import ProductsCards from "./ProductsCards";
 
 
 const Products = () => {
 
-    const products = [
-        {
-            id: 1,
-            name: 'Shuvo Deb',
-            ownerImage: 'https://i.ibb.co/HzhTzkr/Photo-Room-20230619-161249.png',
-            productImage: 'https://i.ibb.co/C69SsfL/product-08.webp',
-            title: 'I will translate english to japanese or japanese to',
-            details: 'I will translate english to japanese or japanese to',
-            price: '20'
-        },
-        {
-            id: 2,
-            name: 'Shuvo Deb',
-            ownerImage: 'https://i.ibb.co/HzhTzkr/Photo-Room-20230619-161249.png',
-            productImage: 'https://i.ibb.co/C69SsfL/product-08.webp',
-            title: 'I will translate english to japanese or japanese to',
-            details: 'I will translate english to japanese or japanese to',
-            price: '20'
-        },
-        {
-            id: 3,
-            name: 'Shuvo Deb',
-            ownerImage: 'https://i.ibb.co/HzhTzkr/Photo-Room-20230619-161249.png',
-            productImage: 'https://i.ibb.co/C69SsfL/product-08.webp',
-            title: 'I will translate english to japanese or japanese to',
-            details: 'I will translate english to japanese or japanese to',
-            price: '20'
-        },
-        {
-            id: 4,
-            name: 'Shuvo Deb',
-            ownerImage: 'https://i.ibb.co/HzhTzkr/Photo-Room-20230619-161249.png',
-            productImage: 'https://i.ibb.co/C69SsfL/product-08.webp',
-            title: 'I will translate english to japanese or japanese to',
-            details: 'I will translate english to japanese or japanese to',
-            price: '20'
-        },
-        {
-            id: 5,
-            name: 'Shuvo Deb',
-            ownerImage: 'https://i.ibb.co/HzhTzkr/Photo-Room-20230619-161249.png',
-            productImage: 'https://i.ibb.co/C69SsfL/product-08.webp',
-            title: 'I will translate english to japanese or japanese to',
-            details: 'I will translate english to japanese or japanese to',
-            price: '20'
-        },
-        {
-            id: 6,
-            name: 'Shuvo Deb',
-            ownerImage: 'https://i.ibb.co/HzhTzkr/Photo-Room-20230619-161249.png',
-            productImage: 'https://i.ibb.co/C69SsfL/product-08.webp',
-            title: 'I will translate english to japanese or japanese to',
-            details: 'I will translate english to japanese or japanese to',
-            price: '20'
-        },
-    ]
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch(`${baseUrl}/all-products`)
+            .then(res => res.json())
+            .then(result => {
+                setProducts(result.products)
+            })
+    }, [])
 
     return (
         <div className="py-10">
@@ -67,14 +22,19 @@ const Products = () => {
                     Explore our <span className="text-[#9264E2]">Products</span>
                 </h1>
 
-                <div className="grid md:grid-cols-4 gap-5 mt-10">
-                    {
-                        products?.map(product => <ProductsCards
-                            key={product?.id}
-                            product={product}
-                        />)
-                    }
-                </div>
+                {
+                    products?.length === 0 ?
+                        <h2 className="text-center mt-5 text-2xl font-semibold">No products available</h2>
+                        :
+                        <div className="grid md:grid-cols-4 gap-5 mt-10">
+                            {
+                                products?.map(product => <ProductsCards
+                                    key={product?.id}
+                                    product={product}
+                                />)
+                            }
+                        </div>
+                }
             </div>
         </div>
     );

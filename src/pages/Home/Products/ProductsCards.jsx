@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const ProductsCards = ({ product }) => {
-    const { id, name, ownerImage, productImage, title, price } = product;
+    const { _id, name, ownerImage, image, title, price } = product;
 
     const detailsHandler = (product) => {
         console.log(product)
@@ -9,7 +9,7 @@ const ProductsCards = ({ product }) => {
 
     return (
         <div className="border rounded-lg relative">
-            <img className="h-[180px] w-full" src={productImage} alt="" />
+            <img className="h-[180px] w-full" src={`http://localhost:3001/images/${image}`} alt="" />
             <div className="px-3">
                 <div className="mt-3 flex items-center gap-5 mb-3">
                     <img className="w-[40px] border rounded-full absolute top-40" src={ownerImage} alt="" />
@@ -27,7 +27,7 @@ const ProductsCards = ({ product }) => {
                                 Price: <span className="font-bold">${price}</span>
                             </h1>
                         </div>
-                        <Link to={`product-details/${product.id}`} onClick={() => detailsHandler(product)} className="bg-[#8364E2] text-[#fff] px-3 py-1 rounded text-sm">Details</Link>
+                        <Link to={`product-details/${product._id}`} onClick={() => detailsHandler(product)} className="bg-[#8364E2] text-[#fff] px-3 py-1 rounded text-sm">Details</Link>
                     </div>
                 </div>
             </div>

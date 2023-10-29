@@ -1,24 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye } from 'react-icons/ai';
 import { useForm } from "react-hook-form"
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import  axios  from 'axios';
+import { baseUrl } from "../../URL/URL";
 
 
 const RegisterForm = () => {
 
+    const { register, formState: { errors }, handleSubmit } = useForm()
     const { signUp } = useContext(AuthContext)
+    const navigate = useNavigate();
 
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-    } = useForm()
     const onSubmit = (data) => {
+        const name = data.name;
+        const email = data.email;
+        const phoneNumber = data.phoneNumber;
+        const password = data.password;
+        const signUpInfo = { name, email, phoneNumber, password }
         signUp(data.email, data.password)
             .then(newUser => {
                 const user = newUser.user;
                 console.log(user)
+                axios.post(`${baseUrl}/sign-up`, signUpInfo, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => {
+                    console.log(response.data)
+                }).catch(error => {
+                    console.log(error)
+                })
+                navigate('/')
             })
             .catch(error => {
                 console.log(error.message)
