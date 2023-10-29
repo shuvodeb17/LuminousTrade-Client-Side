@@ -70,7 +70,7 @@ const Navbar = () => {
                                 <Link to="/add-product">Add Product</Link>
                             </li>
                             <li className="text-gray-600 hover:text-blue-600">
-                                <Link to="/">Services</Link>
+                                <Link to="/cart">Cart</Link>
                             </li>
                             {
                                 user?.email ?

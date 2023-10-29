@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import AddProduct from "../pages/AddProduct/AddProduct";
+import Cart from "../pages/Cart/Cart";
 import Banner from "../pages/Home/Banner/Banner";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
                 path: '/product-details/:id',
                 element: <ProductDetails />,
                 loader: ({params}) => fetch(`${baseUrl}/specific-product/${params.id}`)
+            },
+            {
+                path: 'cart',
+                element: <Cart />
             },
             {
                 path: 'login',

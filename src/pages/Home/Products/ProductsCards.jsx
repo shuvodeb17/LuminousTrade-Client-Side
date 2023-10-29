@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const ProductsCards = ({ product }) => {
-    const { _id, name, ownerImage, image, title, price } = product;
+    const { _id, name, productName, ownerImage, image, title, price } = product;
 
     const detailsHandler = (product) => {
         console.log(product)
@@ -13,12 +13,12 @@ const ProductsCards = ({ product }) => {
             <div className="px-3">
                 <div className="mt-3 flex items-center gap-5 mb-3">
                     <img className="w-[40px] border rounded-full absolute top-40" src={ownerImage} alt="" />
-                    <p className="text-sm font-semibold text-[#333333] mt-5">{name}</p>
+                    <p className="text-sm font-semibold text-[#333333] mt-5">Owner Name: {name}</p>
                 </div>
 
                 <div className="">
-                    <h1 className="text-[20px] font-bold text-[#333333] mb-4">
-                        {title.slice(0, 50)}...
+                    <h1 className="text-[18px] font-bold text-[#333333] mb-4">
+                        {productName}
                     </h1>
                     <hr />
                     <div className="py-3 flex items-center justify-between">

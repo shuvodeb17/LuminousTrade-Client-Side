@@ -26,6 +26,7 @@ const AddProduct = () => {
         formData.append("file", data.image[0]);
         formData.append("name", data.name);
         formData.append("email", data.email);
+        formData.append("productName", data.productName);
         formData.append("price", data.price);
         formData.append("title", data.title);
         formData.append("details", data.details);
@@ -71,6 +72,11 @@ const AddProduct = () => {
                         <p htmlFor="name">Email:</p>
                         <input className="border outline-none px-2 py-2 rounded w-full" {...register("email", { required: true })} defaultValue={user?.email} type="text" />
                     </div>
+                </div>
+
+                <div className="w-full mt-5">
+                    <p htmlFor="name">Product Name:</p>
+                    <input className="border outline-none px-2 py-2 rounded w-full" {...register("productName", { required: true })} type="text" />
                 </div>
 
                 <div className="flex items-center justify-center gap-5 w-full mt-5">
