@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { AuthContext } from "../../providers/AuthProvider";
 import { baseUrl } from "../../URL/URL";
@@ -10,6 +10,10 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe('pk_test_51O6r3OEfgjC5M1QioI9otGroBj9k9dRf6AsmDEXW2vU63IuzknJTtYtkcZCQ6mBXrTAtunz13QP1UfxwzuMkMvtd00vUQPPW3N');
 const Cart = () => {
+
+    useEffect(() => {
+        document.title = 'Cart'
+    },[])
 
     const { user } = useContext(AuthContext);
 

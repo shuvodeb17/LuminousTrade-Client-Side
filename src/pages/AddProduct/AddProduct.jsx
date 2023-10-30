@@ -14,6 +14,9 @@ const AddProduct = () => {
     const [showMessage, setShowMessage] = useState("");
 
 
+    useEffect(() => {
+        document.title = 'Add Product'
+    },[])
 
     useEffect(() => {
         fetch(`${baseUrl}/specific-user/${user?.email}`)

@@ -8,7 +8,16 @@ const PaymentHistory = () => {
     const [paymentInfo, setPaymentInfo] = useState([]);
 
     useEffect(() => {
-        fetch(`${baseUrl}/specific-user-payment-info?email=${user?.email}`)
+        document.title = 'Payment History'
+    },[])
+
+    useEffect(() => {
+        fetch(`${baseUrl}/specific-user-payment-info?email=${user?.email}`,{
+            method:'GET',
+            headers:{
+                authorization:`Bearer ${localStorage.getItem('access-token')}`
+            }
+        })
             .then(res => res.json())
             .then(result => {
                 setPaymentInfo(result)

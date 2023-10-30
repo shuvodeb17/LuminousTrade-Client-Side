@@ -9,6 +9,7 @@ import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Register from "../pages/Register/Register";
 import { baseUrl } from "../URL/URL";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
             {
                 path: '/product-details/:id',
                 element: <ProductDetails />,
-                loader: ({params}) => fetch(`${baseUrl}/specific-product/${params.id}`)
+                loader: ({ params }) => fetch(`${baseUrl}/specific-product/${params.id}`)
             },
             {
                 path: 'cart',
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory />
+                element: <PrivateRoute><PaymentHistory /></PrivateRoute>
             },
             {
                 path: 'login',

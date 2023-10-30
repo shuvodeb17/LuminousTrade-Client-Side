@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { baseUrl } from '../../URL/URL';
 
 const CheckoutForm = ({ price }) => {
     const stripe = useStripe();
@@ -14,13 +15,13 @@ const CheckoutForm = ({ price }) => {
     const [transactionId, setTransactionId] = useState('');
 
     useEffect(() => {
-        fetch(`http://localhost:3001/specific-user/${user?.email}`)
+        fetch(`${baseUrl}/specific-user/${user?.email}`)
             .then(res => res.json())
             .then(data => setUserInfo(data?.result[0]))
     }, [user?.email]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/create-payment`, {
+        fetch(`${baseUrl}/create-payment`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ price, email: user?.email }),
@@ -77,7 +78,7 @@ const CheckoutForm = ({ price }) => {
 
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id)
-            fetch(`http://localhost:3001/save-payment-info`, {
+            fetch(`${baseUrl}/save-payment-info`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ price, email: user?.email, trsId:paymentIntent.id }),
