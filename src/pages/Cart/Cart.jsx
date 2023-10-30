@@ -3,7 +3,12 @@ import { useQuery } from "react-query";
 import { AuthContext } from "../../providers/AuthProvider";
 import { baseUrl } from "../../URL/URL";
 import CartTable from "./CartTable";
+import CheckoutForm from "./CheckoutForm";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 
+
+const stripePromise = loadStripe('pk_test_51O6r3OEfgjC5M1QioI9otGroBj9k9dRf6AsmDEXW2vU63IuzknJTtYtkcZCQ6mBXrTAtunz13QP1UfxwzuMkMvtd00vUQPPW3N');
 const Cart = () => {
 
     const { user } = useContext(AuthContext);
@@ -27,8 +32,6 @@ const Cart = () => {
     } else {
         console.log("Products is not an array or is undefined.");
     }
-
-
 
 
     return (
@@ -62,7 +65,14 @@ const Cart = () => {
                     </div>
             }
 
-            <button>Pay {totalAmount}</button>
+
+            <Elements stripe={stripePromise}>
+                <CheckoutForm price={totalAmount}/>
+            </Elements>
+
+            {/* <div className="text-center">
+                <button className="bg-[#3577F0] text-[#fff] text-center w-6/12 py-2">Pay {totalAmount}</button>
+            </div> */}
         </div>
     );
 };

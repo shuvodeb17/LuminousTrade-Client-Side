@@ -1,7 +1,7 @@
 import { baseUrl } from "../../URL/URL";
 
 const CartTable = ({ product }) => {
-    console.log(product)
+    // console.log(product)
     const { image, name, productName, price } = product;
     return (
         <tr class="text-gray-700">
