@@ -82,7 +82,7 @@ const AddProduct = () => {
                 <div className="flex items-center justify-center gap-5 w-full mt-5">
                     <div className="w-full">
                         <p htmlFor="name">Price:</p>
-                        <input className="border outline-none px-2 py-2 rounded w-full" {...register("price", { required: true })} type="text" />
+                        <input className="border outline-none px-2 py-2 rounded w-full" {...register("price", { required: true })} type="number" />
                     </div>
                     <div className="w-full">
                         <p htmlFor="name">Title:</p>

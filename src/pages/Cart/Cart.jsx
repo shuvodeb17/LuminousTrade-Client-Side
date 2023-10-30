@@ -36,6 +36,9 @@ const Cart = () => {
 
     return (
         <div className="container mx-auto md:px-10">
+            <h1 className="text-3xl text-center font-bold mt-5">
+                <span className="text-[#9264E2]">Cart</span>
+            </h1>
             {
                 products?.length === 0 ?
                     <h2 className="py-10 text-center text-2xl font-bold">No products available</h2>
@@ -67,7 +70,7 @@ const Cart = () => {
 
 
             <Elements stripe={stripePromise}>
-                <CheckoutForm price={totalAmount}/>
+                <CheckoutForm price={totalAmount} />
             </Elements>
 
         </div>

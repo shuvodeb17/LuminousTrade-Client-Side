@@ -5,6 +5,7 @@ import Cart from "../pages/Cart/Cart";
 import Banner from "../pages/Home/Banner/Banner";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
+import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import Register from "../pages/Register/Register";
 import { baseUrl } from "../URL/URL";
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <Cart />
+            },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory />
             },
             {
                 path: 'login',

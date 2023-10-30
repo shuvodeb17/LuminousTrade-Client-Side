@@ -59,7 +59,7 @@ const CartTable = ({ product }) => {
             </td>
             <td class="px-4 py-3 text-ms font-semibold border">{productName}</td>
             <td class="px-4 py-3 text-xs border">
-                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> {price} </span>
+                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> ${price} </span>
             </td>
             <td class="px-4 py-3 text-sm border">
                 <button onClick={() => deleteHandler(_id)} className="cursor-pointer bg-red-400 text-[#2b2a2a] rounded-full p-1">

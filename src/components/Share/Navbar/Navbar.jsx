@@ -72,6 +72,9 @@ const Navbar = () => {
                             <li className="text-gray-600 hover:text-blue-600">
                                 <Link to="/cart">Cart</Link>
                             </li>
+                            <li className="text-gray-600 hover:text-blue-600">
+                                <Link to="/payment-history">Payment History</Link>
+                            </li>
                             {
                                 user?.email ?
                                     <li onClick={handleLogout} className="text-[#fff] bg-[#b01818] px-5 py-1 rounded cursor-pointer">
