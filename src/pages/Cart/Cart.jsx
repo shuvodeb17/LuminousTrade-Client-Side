@@ -70,9 +70,6 @@ const Cart = () => {
                 <CheckoutForm price={totalAmount}/>
             </Elements>
 
-            {/* <div className="text-center">
-                <button className="bg-[#3577F0] text-[#fff] text-center w-6/12 py-2">Pay {totalAmount}</button>
-            </div> */}
         </div>
     );
 };
