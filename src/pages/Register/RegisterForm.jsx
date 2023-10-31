@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { AiOutlineEye } from 'react-icons/ai';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useForm } from "react-hook-form"
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -14,6 +14,11 @@ const RegisterForm = () => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
     const navigate = useNavigate();
+    const [show, setShow] = useState(false)
+
+    const showPassword = () => {
+        setShow(!show)
+    }
 
     console.log(error)
     console.log(success)
@@ -67,8 +72,13 @@ const RegisterForm = () => {
                     </div>
                     <div className="mt-5 mb-5 relative">
                         <p className='text-[#606060]'>Password</p>
-                        <input {...register("password", { required: true })} type="password" className="border rounded w-full py-2 px-2 outline-none" />
-                        <AiOutlineEye className='cursor-pointer absolute right-2 top-9' size={20} />
+                        <input {...register("password", { required: true })} type={`${show === true ? 'text' : 'password'}`} className="border rounded w-full py-2 px-2 outline-none" />
+                        {
+                            show === true ?
+                                <AiOutlineEye onClick={showPassword} className='cursor-pointer absolute right-2 top-9' size={20} />
+                                :
+                                <AiOutlineEyeInvisible onClick={showPassword} className='cursor-pointer absolute right-2 top-9' size={20} />
+                        }
                     </div>
 
                     <div className="flex items-center justify-between mb-5">
