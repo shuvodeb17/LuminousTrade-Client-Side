@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye } from 'react-icons/ai';
 import { useForm } from "react-hook-form"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { baseUrl } from "../../URL/URL";
 
@@ -9,6 +9,8 @@ const LoginForm = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm()
     const { signIn } = useContext(AuthContext)
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState('')
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
@@ -16,6 +18,8 @@ const LoginForm = () => {
         signIn(data.email, data.password)
             .then(loggedUser => {
                 const result = loggedUser.user
+                setSuccess('login Successful')
+                setError('')
                 const currentUser = {
                     email: result?.email
                 }
@@ -36,7 +40,8 @@ const LoginForm = () => {
                 navigate('/')
             })
             .catch(error => {
-                console.log(error.message)
+                setSuccess('')
+                setError(error.message)
             })
     }
 
@@ -63,6 +68,9 @@ const LoginForm = () => {
                             <Link to='/register' className='text-[#8364E2]'> Register</Link>
                         </p>
                     </div>
+
+                    <p className="text-red-500 text-center">{error}</p>
+                    <p className="text-green-500 text-center">{success}</p>
                 </div>
             </form>
         </div>

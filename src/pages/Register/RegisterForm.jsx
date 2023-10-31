@@ -1,17 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye } from 'react-icons/ai';
 import { useForm } from "react-hook-form"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import  axios  from 'axios';
+import axios from 'axios';
 import { baseUrl } from "../../URL/URL";
 
 
 const RegisterForm = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const { signUp } = useContext(AuthContext)
+    const { signUp } = useContext(AuthContext);
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState('')
     const navigate = useNavigate();
+
+    console.log(error)
+    console.log(success)
 
     const onSubmit = (data) => {
         const name = data.name;
@@ -22,6 +27,7 @@ const RegisterForm = () => {
         signUp(data.email, data.password)
             .then(newUser => {
                 const user = newUser.user;
+                setSuccess('Registration Successful')
                 console.log(user)
                 axios.post(`${baseUrl}/sign-up`, signUpInfo, {
                     headers: {
@@ -29,13 +35,15 @@ const RegisterForm = () => {
                     }
                 }).then(response => {
                     console.log(response.data)
+                    setError('')
                 }).catch(error => {
                     console.log(error)
+                    setError(error)
                 })
                 navigate('/')
             })
             .catch(error => {
-                console.log(error.message)
+                setError(error.message)
             })
     }
 
@@ -70,6 +78,9 @@ const RegisterForm = () => {
                             <Link to='/login' className='text-[#8364E2]'> Login</Link>
                         </p>
                     </div>
+
+                    <p className="text-red-500 text-center">{error}</p>
+                    <p className="text-green-500 text-center">{success}</p>
                 </div>
             </form>
         </div>

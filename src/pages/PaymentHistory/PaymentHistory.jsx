@@ -6,16 +6,17 @@ import PaymentHistoryTable from "./PaymentHistoryTable";
 const PaymentHistory = () => {
     const { user } = useContext(AuthContext)
     const [paymentInfo, setPaymentInfo] = useState([]);
+    console.log(paymentInfo)
 
     useEffect(() => {
         document.title = 'Payment History'
-    },[])
+    }, [])
 
     useEffect(() => {
-        fetch(`${baseUrl}/specific-user-payment-info?email=${user?.email}`,{
-            method:'GET',
-            headers:{
-                authorization:`Bearer ${localStorage.getItem('access-token')}`
+        fetch(`${baseUrl}/specific-user-payment-info?email=${user?.email}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
         })
             .then(res => res.json())
@@ -35,7 +36,7 @@ const PaymentHistory = () => {
 
                     <div class="block w-full overflow-x-auto">
                         {
-                            paymentInfo?.length === 0 ?
+                            paymentInfo.length === 0 ?
                                 <h2 className="text-2xl text-center font-bold mt-5">No Payments History</h2>
                                 :
                                 <table class="items-center bg-transparent w-full border-collapse ">
@@ -57,14 +58,21 @@ const PaymentHistory = () => {
                                     </thead>
 
                                     <tbody>
-                                        {
-                                            paymentInfo?.map(info =>
-                                                <PaymentHistoryTable
-                                                    key={info._id}
-                                                    info={info}
-                                                />)
-                                        }
+                                        {Array.isArray(paymentInfo) && paymentInfo.length > 0 ? (
+                                            paymentInfo.map((info) => (
+                                                <PaymentHistoryTable key={info._id} info={info} />
+                                            ))
+                                        ) : (
+                                            <tr>
+                                                <td colSpan="4" className="text-center">
+                                                    {paymentInfo.length === 0
+                                                        ? "No Payments History"
+                                                        : "Loading or no data available"}
+                                                </td>
+                                            </tr>
+                                        )}
                                     </tbody>
+
 
                                 </table>
                         }
