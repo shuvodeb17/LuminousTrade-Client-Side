@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { baseUrl } from "../../../URL/URL";
 
 const ProductsCards = ({ product }) => {
     const { _id, name, productName, ownerImage, image, title, price } = product;
@@ -9,7 +10,7 @@ const ProductsCards = ({ product }) => {
 
     return (
         <div className="border rounded-lg relative">
-            <img className="h-[180px] w-full" src={`http://localhost:3001/images/${image}`} alt="" />
+            <img className="h-[180px] w-full" src={`${baseUrl}/images/${image}`} alt="" />
             <div className="px-3">
                 <div className="mt-3 flex items-center gap-5 mb-3">
                     <img className="w-[40px] border rounded-full absolute top-40" src={ownerImage} alt="" />
